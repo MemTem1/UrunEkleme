@@ -5,7 +5,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import CreateScreen from './screens/CreateScreen';
 import { BlogProvider } from './contrex/BlogContext';
-import { BlogProvider2 } from './contrex/BlogContext2';
 const Stack = createNativeStackNavigator();
 
 export default function App() {

@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useContext } from 'react'
 import BlogContext from '../contrex/BlogContext'
-import CreateScreen from './CreateScreen'
 
 
 export default function HomeScreen() {
@@ -9,7 +8,7 @@ export default function HomeScreen() {
     return (
         <View>
             <Text>HomeScreen{value}</Text>
-            <CreateScreen />
+
         </View>
     )
 }
