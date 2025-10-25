@@ -4,21 +4,21 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import CreateScreen from './screens/CreateScreen';
-import { BlogProvider } from './contrex/BlogContext';
+import { Provider } from './contrex/BlogContext';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <BlogProvider>
+    <Provider>
 
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerTitle: "memo uygulamsı" }}>
+        <Stack.Navigator screenOptions={{ headerTitle: "Front.Div" }}>
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="oluştur" component={CreateScreen} />
         </Stack.Navigator>
       </NavigationContainer>
 
-    </BlogProvider>
+    </Provider>
   );
 }
 
