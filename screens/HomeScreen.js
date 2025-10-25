@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View, FlatList, Button, TouchableOpacity } from 'react-native'
 import React, { useContext } from 'react'
 import { Context } from '../contrex/BlogContext'
+import Entypo from '@expo/vector-icons/Entypo';
 
 
-export default function HomeScreen() {
-    const { state, addBlogPost } = useContext(Context)
+export default function HomeScreen({ navigation }) {
+    const { state, addBlogPost, deleteBlogPost } = useContext(Context)
     return (
         <View style={styles.container}>
             <Text style={styles.header}>📝 Blog Yazıları</Text>
@@ -19,12 +20,23 @@ export default function HomeScreen() {
             <FlatList
                 data={state}
                 keyExtractor={(data, index) => `${data.title}-${index}`}
-                renderItem={({ item }) => (
-                    <View style={styles.card}>
-                        <Text style={styles.title}>{item.title}</Text>
-                        <Text style={styles.subtitle}>Yeni blog gönderisi</Text>
-                    </View>
-                )}
+                renderItem={({ item }) => {
+                    return (
+                        <TouchableOpacity onPress={() => { navigation.navigate('ShowScreen', { id: item.id }) }} activeOpacity={0.8}>
+                            <View style={styles.card}>
+                                <View style={{ width: 300, }}>
+                                    <Text style={styles.title}>{item.title}</Text>
+                                    <Text style={styles.subtitle}>Yeni blog gönderisi</Text>
+                                </View>
+                                <View style={{ justifyContent: "center", alignItems: "center", backgroundColor: "#ffffffff" }}>
+                                    <TouchableOpacity activeOpacity={0.5} onPress={() => { deleteBlogPost(item.id) }}>
+                                        <Entypo name="trash" size={24} color="#ff0000ff" />
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                    )
+                }}
                 contentContainerStyle={styles.listContent}
             />
         </View>
@@ -75,6 +87,9 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 6,
         elevation: 3, // Android gölgesi
+        flexDirection: "row",
+        juasstifyContent: "space-between",
+
     },
     title: {
         fontSize: 18,
