@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
+import BlogPostForm from '../component/BlogPostForm'
+import { Context } from '../contrex/BlogContext'
 
 
-export default function CreateScreen() {
+export default function CreateScreen({ navigation }) {
+    const { addBlogPost } = useContext(Context)
 
     return (
-        <View>
-            <Text>CreateScreen </Text>
-        </View>
+        <BlogPostForm onsubmit={(title, content) => { addBlogPost(title, content, () => { navigation.navigate("Home") }) }} />
     )
 }
 
